@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  nats-streaming:
+    image: "nats-streaming"
+    container_name: nats-streaming-lib
+    restart: always
+    networks:
+      - nats-lib-network
+
+  test:
+    build: 
+      context: .
+      target: test
+    image: "test_nats-lib:latest"
+    networks:
+      - nats-lib-network
+    depends_on:
+      - nats-streaming
+    environment:
+      - LOG_LEVEL=error
+      - NATS_URL=nats-streaming-lib:4222
+      - WAIT_HOSTS=nats-streaming-lib:4222
+
+networks:
+  nats-lib-network:
+    driver: bridge
