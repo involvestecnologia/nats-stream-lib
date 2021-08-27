@@ -1,6 +1,6 @@
 {
   "name": "@involves/nats-stream-lib",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Nats library",
   "main": "index.js",
   "scripts": {
