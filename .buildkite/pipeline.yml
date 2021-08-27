@@ -26,6 +26,17 @@ steps:
     agents:
       queue: "docker"
     if: build.source == "schedule"
+  
+  - label: "Lint"
+    key: "lint"
+    env:
+      SCRIPT_NAME: ci_run_tests.sh
+    command:
+      - docker build --tag=$$BUILDKITE_BUILD_ID --target=lint .
+      - docker run --rm $$BUILDKITE_BUILD_ID
+    agents:
+      queue: "docker"
+    if: build.source != "schedule"
 
   - label: "Tests"
     key: "test"

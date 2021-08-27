@@ -24,6 +24,11 @@ FROM base AS dependencies
 RUN --mount=type=cache,uid=1000,gid=1000,target=/home/node/.npm \
     npm install --force --no-audit
 
+# ---- Lint ----
+FROM dependencies AS lint
+COPY --chown=node:node . ./
+CMD ["node_modules/eslint/bin/eslint.js", "."]
+
 FROM base AS publish
 ARG NPM_TOKEN
 RUN npm config set git-tag-version false && \
