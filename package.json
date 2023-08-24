@@ -1,5 +1,5 @@
 {
-  "name": "@involves/nats-stream-lib",
+  "name": "@involvestecnologia/nats-stream-lib",
   "version": "0.1.10",
   "description": "Nats library",
   "main": "index.js",
@@ -12,6 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "nats": "^2.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "chai": "^4.3.4",
